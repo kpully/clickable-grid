@@ -32,7 +32,7 @@ def register():
     form = RegistrationForm()
     age_group = None
     if form.validate_on_submit():
-        print form.age.data
+        print(form.age.data)
         if int(form.age.data) < 30:
             age_group = '1'
         elif int(form.age.data) < 55:

@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, render_template, request, redirect, flash, json
 from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
-from app import app
+from . import main
 
 import numpy as np
 import math
@@ -10,11 +10,11 @@ import pandas as pd
 
 
 
-@app.route('/')
+@main.route('/')
 def index():
 	return render_template('index.html')
 
-@app.route('/_grid', methods=["GET", "POST"])
+@main.route('/_grid', methods=["GET", "POST"])
 def grid():
 	x = request.form['x']
 	y = request.form['y']
