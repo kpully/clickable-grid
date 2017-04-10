@@ -32,22 +32,8 @@ def register():
     form = RegistrationForm()
     age_group = None
     if form.validate_on_submit():
-        print(form.age.data)
-        if int(form.age.data) < 30:
-            age_group = '1'
-        elif int(form.age.data) < 55:
-            age_group = '2'
-        elif int(form.age.data) > 55:
-            age_group = '3'
-        else:
-            age_group='0'
-        
-        user = User(email=form.email.data,
+        user = User(
                     username=form.username.data,
-                    gender=form.gender.data,
-                    age = form.age.data,
-                    weight=form.weight.data,
-                    age_group = age_group,
                     password=form.password.data)
         db.session.add(user)
         db.session.commit()

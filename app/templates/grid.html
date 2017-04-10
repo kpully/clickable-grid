@@ -4,6 +4,7 @@
  <script src="https://d3js.org/d3.v4.min.js"></script>
 <button type="button" class="btn">Save</button>
 <button type="button" class="btn">Create Matching Ceremony</button>
+<button type="button" class="btn" onclick="redraw()">Reset</button>
 <div class="container">
 
 Oswaldo, Ozzie, Jaelin, Eddie, Derek, Hayden, Tyler, Andre, Michael, Mike, Joey
@@ -78,6 +79,40 @@ var column = row.selectAll(".square")
 	   if ((d.click)%5 == 3 ) { d3.select(this).style("fill","#FAAFBE"); }
 	   if ((d.click)%5 == 4 ) { d3.select(this).style("fill","#ff0000"); }
     });
+
+
+function redraw() {
+	d3.select("svg").remove();
+
+	var grid = d3.select("#grid")
+	.append("svg")
+	.attr("width","900px")
+	.attr("height","900px");
+	
+var row = grid.selectAll(".row")
+	.data(gridData)
+	.enter().append("g")
+	.attr("class", "row");
+	
+var column = row.selectAll(".square")
+	.data(function(d) { return d; })
+	.enter().append("rect")
+	.attr("class","square")
+	.attr("x", function(d) { return d.x; })
+	.attr("y", function(d) { return d.y; })
+	.attr("width", function(d) { return d.width; })
+	.attr("height", function(d) { return d.height; })
+	.style("fill", "#fff")
+	.style("stroke", "#222")
+	.on('click', function(d) {
+       d.click ++;
+       if ((d.click)%5 == 0 ) { d3.select(this).style("fill","#fff"); }
+	   if ((d.click)%5 == 1 ) { d3.select(this).style("fill","#000000"); }
+	   if ((d.click)%5 == 2 ) { d3.select(this).style("fill","#ff0000"); }
+	   if ((d.click)%5 == 3 ) { d3.select(this).style("fill","#FAAFBE"); }
+	   if ((d.click)%5 == 4 ) { d3.select(this).style("fill","#659EC7"); }
+    });
+}
     </script>
  </div>
  </div>

@@ -6,9 +6,7 @@ from . import db, login_manager
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(64), unique=True, index=True)
     username = db.Column(db.String(64))
-    role = db.Column(db.String(20))
     password_hash = db.Column(db.String(128))
 
     @property
@@ -25,12 +23,12 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return '<User %r>' % self.username
 
-class Grid(db.Model):
-    __tablename__ = 'grids'
-    x = db.Column(db.Integer)
-    y = db.Column(db.Integer)
-    grid_type = db.Column(db.String(64))
-    colors = db.Column(db.String(64))
+# class Grid(db.Model):
+#     __tablename__ = 'grids'
+#     x = db.Column(db.Integer)
+#     y = db.Column(db.Integer)
+#     grid_type = db.Column(db.String(64))
+#     colors = db.Column(db.String(64))
 
 @login_manager.user_loader
 def load_user(user_id):
