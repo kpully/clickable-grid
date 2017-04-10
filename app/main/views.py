@@ -19,3 +19,7 @@ def grid():
 	x = request.form['x']
 	y = request.form['y']
 	return render_template('grid.html', x=x, y=y)
+
+@main.route('/_matching_ceremony')
+	def matching_ceremony():
+		return render_template(matching_ceremony.html)

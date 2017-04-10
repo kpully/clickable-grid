@@ -8,13 +8,7 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(64), unique=True, index=True)
     username = db.Column(db.String(64))
-    weight = db.Column(db.Integer)
-    gender=db.Column(db.String(64))
-    age = db.Column(db.Integer)
     role = db.Column(db.String(20))
-    age_group = db.Column(db.Integer)
-    scripts = db.relationship('Script', backref='user', lazy='dynamic')
-    moods = db.relationship('Mood', backref='user', lazy='dynamic')
     password_hash = db.Column(db.String(128))
 
     @property
@@ -31,6 +25,12 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return '<User %r>' % self.username
 
+class Grid(db.Model):
+    __tablename__ = 'grids'
+    x = db.Column(db.Integer)
+    y = db.Column(db.Integer)
+    grid_type = db.Column(db.String(64))
+    colors = db.Column(db.String(64))
 
 @login_manager.user_loader
 def load_user(user_id):
